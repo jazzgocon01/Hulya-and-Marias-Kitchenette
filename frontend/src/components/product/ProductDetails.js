@@ -22,7 +22,6 @@ const ProductDetails = ({ match }) => {
 
     const { loading, error, product } = useSelector(state => state.productDetails)
     const { user } = useSelector(state => state.auth)
-    const { error: reviewError, success } = useSelector(state => state.newReview)
 
     useEffect(() => {
         dispatch(getProductDetails(match.params.id))
@@ -32,17 +31,7 @@ const ProductDetails = ({ match }) => {
             dispatch(clearErrors())
         }
 
-        if (reviewError) {
-            alert.error(reviewError);
-            dispatch(clearErrors())
-        }
-
-        if (success) {
-            alert.success('Reivew posted successfully')
-            dispatch({ type: NEW_REVIEW_RESET })
-        }
-
-    }, [dispatch, alert, error, reviewError, match.params.id, success])
+    }, [dispatch, alert, error, match.params.id ])
 
     const addToCart = () => {
         dispatch(addItemToCart(match.params.id, quantity));
