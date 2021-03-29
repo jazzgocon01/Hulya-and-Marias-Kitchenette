@@ -1,10 +1,6 @@
 import React, { Fragment } from 'react'
 import Loader from '../layout/Loader'
 
-
-
-
-
 const ContactUs = () => {
 
     return (
