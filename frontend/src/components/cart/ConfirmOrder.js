@@ -9,7 +9,6 @@ import{saveShippingInfo} from '../../actions/cartActions'
 import { Button,Modal} from 'react-bootstrap';
 
 
-
 const ConfirmOrder = ({ history }) => {
 
     const [show, setShow] = useState(false);
@@ -22,39 +21,24 @@ const ConfirmOrder = ({ history }) => {
     const { error } = useSelector(state => state.newOrder)
 
 
-    const handleSubmit = () => {
-        const postURL = "https://localhost:3000/order/new"
-        fetch(postURL, {
-            method: 'POST',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-        })
-    }
-
     // Calculate Order Prices
-    const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)
+    const itemsPrice = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)
 
-    //const taxPrice = Number((0.05 * itemsPrice).toFixed(2))
-    const totalPrice = (itemsPrice).toFixed(2)
+
     const order = {
         orderItems: cartItems,
         shippingInfo
     }
 
-    const processToPayment = () => {
-        
-        const data = {
-            itemsPrice: itemsPrice
-            //taxPrice,
-        }
 
-        sessionStorage.setItem('orderInfo', JSON.stringify(data))
-        history.push('/payment')
+    const submitHandler = () => {
+        order.itemsPrice = itemsPrice
 
+
+        dispatch(createOrder(order))
+
+        history.push('/success')
     }
-
 
     return (
         <Fragment>
@@ -108,14 +92,12 @@ const ConfirmOrder = ({ history }) => {
                 <div className="col-12 col-lg-3 my-4">
                     <div id="order_summary">
                         <h4>Order Summary</h4>
-                        <hr />
-                        <p>Subtotal:  <span className="order-summary-values">₱{itemsPrice}</span></p>
 
 
 
                         <hr />
 
-                        <p>Total: <span className="order-summary-values">₱{totalPrice}</span></p>
+                        <p>Total: <span className="order-summary-values">₱{itemsPrice}</span></p>
 
                         <hr />
                         <button id="checkout_btn" className="btn btn-primary btn-block" onClick={handleShow}>Confirm</button>
@@ -148,7 +130,7 @@ const ConfirmOrder = ({ history }) => {
 
         <Button
 
-        variant="primary" type = 'submit' onClick={processToPayment}>Understood
+        variant="primary" type = 'submit' onClick={submitHandler}>Understood
 
 
         </Button>

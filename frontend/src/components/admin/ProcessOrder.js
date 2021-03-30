@@ -20,7 +20,6 @@ const ProcessOrder = ({ match }) => {
     const { loading, order = {} } = useSelector(state => state.orderDetails)
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order
     const { error, isUpdated } = useSelector(state => state.order)
-
     const orderId = match.params.id;
 
     useEffect(() => {
@@ -49,7 +48,7 @@ const ProcessOrder = ({ match }) => {
         dispatch(updateOrder(id, formData))
     }
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`
+    const shippingDetails = shippingInfo && `${shippingInfo.address},${shippingInfo.barangay}, ${shippingInfo.city},  ${shippingInfo.postalCode}`
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false
 
     return (
@@ -69,10 +68,10 @@ const ProcessOrder = ({ match }) => {
                                     <h2 className="my-5">Order # {order._id}</h2>
 
                                     <h4 className="mb-4">Shipping Info</h4>
-                                    <p><b>Name:</b> {user && user.name}</p>
+                                    <p><b>Name:</b> {shippingInfo && shippingInfo.name}</p>
                                     <p><b>Phone:</b> {shippingInfo && shippingInfo.phoneNo}</p>
                                     <p className="mb-4"><b>Address:</b>{shippingDetails}</p>
-                                    <p><b>Amount:</b> ${totalPrice}</p>
+                                    <p><b>Amount:</b> ${order && order.itemsPrice}</p>
 
                                     <hr />
 
@@ -81,7 +80,7 @@ const ProcessOrder = ({ match }) => {
 
                                     {/* <h4 className="my-4">Stripe ID</h4>
                                     <p><b>{paymentInfo && paymentInfo.id}</b></p> */}
-{/* 
+{/*
                                     <h4 className="my-4">Order Status:</h4>
                                     <p className={order.orderStatus && String(order.orderStatus).includes('Delivered') ? "greenColor" : "redColor"} ><b>{orderStatus}</b></p> */}
 

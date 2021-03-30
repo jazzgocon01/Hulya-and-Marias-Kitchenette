@@ -32,7 +32,7 @@ const Payment = ({ history }) => {
 
     const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
     if (orderInfo) {
-        order.itemsPrice = orderInfo.itemsPrice
+        order.totalPrice = orderInfo.totalPrice
         order.shippingPrice = orderInfo.shippingPrice
         order.taxPrice = orderInfo.taxPrice
         order.totalPrice = orderInfo.totalPrice

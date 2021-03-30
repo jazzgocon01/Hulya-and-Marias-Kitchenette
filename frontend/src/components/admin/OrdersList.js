@@ -57,11 +57,11 @@ const OrdersList = ({ history }) => {
                     field: 'amount',
                     sort: 'asc'
                 },
-                // {
-                //     label: 'Status',
-                //     field: 'status',
-                //     sort: 'asc'
-                // },
+                {
+                    label: 'Status',
+                    field: 'status',
+                    sort: 'asc'
+                },
                 {
                     label: 'Actions',
                     field: 'actions',
@@ -74,7 +74,7 @@ const OrdersList = ({ history }) => {
             data.rows.push({
                 id: order._id,
                 numofItems: order.orderItems.length,
-                amount: `₱${order.totalPrice}`,
+                amount: `₱${order.itemsPrice}`,
                 status: order.orderStatus && String(order.orderStatus).includes('Delivered')
                     ? <p style={{ color: 'green' }}>{order.orderStatus}</p>
                     : <p style={{ color: 'red' }}>{order.orderStatus}</p>,
