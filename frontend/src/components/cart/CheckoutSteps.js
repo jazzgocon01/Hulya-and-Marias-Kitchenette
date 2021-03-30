@@ -24,16 +24,7 @@ const CheckoutSteps = ({ shipping, confirmOrder, payment }) => {
                     <div className="step incomplete">Confirm Order</div>
                     <div className="triangle-incomplete"></div>
                 </Link>}
-
-            {payment ? <Link to='/payment' className="float-right">
-                <div className="triangle2-active"></div>
-                <div className="step active-step">Success</div>
-                <div className="triangle-active"></div>
-            </Link> : <Link to="#!" disabled>
-                    <div className="triangle2-incomplete"></div>
-                    <div className="step incomplete">Payment</div>
-                    <div className="triangle-incomplete"></div>
-                </Link>}
+        
 
         </div>
     )
