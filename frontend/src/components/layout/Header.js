@@ -79,17 +79,17 @@ const Header1 = () => {
                             <a type="button" class="nav-link" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false" >{user && user.name}</a>
                             
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                            {/* <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
                                 
                                 {user && user.role === 'admin' && (
                                     <a class="dropdown-item" href="/Dashboard">Dashboard</a> 
                                 )}
-                                    {/* <a class="dropdown-item" href="/orders/me">Orders</a>  */}
+                                    <a class="dropdown-item" href="/orders/me">Orders</a> 
                                     <a class="dropdown-item" href="/me">Profile</a>
                                     <a class="dropdown-item" href="#" onClick={logoutHandler}>Logout</a> 
 
                                 
-                            </div>
+                            </div> */}
                         </li>
 
                     </ul>

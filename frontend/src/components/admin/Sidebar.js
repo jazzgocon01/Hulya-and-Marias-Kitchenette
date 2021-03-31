@@ -1,7 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { logout } from '../../actions/userActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useAlert } from 'react-alert'
 
 const Sidebar = () => {
+
+
+    const alert = useAlert();
+    const dispatch = useDispatch();
+
+    const logoutHandler = () => {
+        dispatch(logout());
+        alert.success('Logged out successfully.')
+    }
+
     return (
         <div className="sidebar-wrapper">
             <nav id="sidebar">
@@ -28,6 +41,10 @@ const Sidebar = () => {
                         <Link to="/admin/orders"><i className="fa fa-shopping-basket"></i> Orders</Link>
                     </li>
 
+                    <li>
+                        <Link to="/profile"><i className="fa fa-user"></i>‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Profile</Link>
+                    </li>
+
                     {/* <li>
                         <Link to="/admin/users"><i className="fa fa-users"></i> Users</Link>
                     </li> */}
@@ -36,6 +53,11 @@ const Sidebar = () => {
                         <Link to="/admin/reviews"><i className="fa fa-star"></i> Reviews</Link>
                     </li> */}
 
+                </ul>
+                <ul className="list-unstyled">
+                    <li onClick={logoutHandler}>
+                        <Link to="#"><i className="fa fa-sign-out" ></i>‎‏‏‎ ‎‏‏‎ ‎‏‏‎ ‎Logout</Link>
+                    </li>
                 </ul>
             </nav>
         </div>

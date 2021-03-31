@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import Loader from '../layout/Loader'
 import MetaData from '../layout/MetaData'
 
+
 import { useAlert } from 'react-alert'
 import { useDispatch, useSelector } from 'react-redux'
 import { login, clearErrors } from '../../actions/userActions'
@@ -18,7 +19,7 @@ const Login = ({ history, location }) => {
 
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
 
-    const redirect = location.search ? location.search.split('=')[1] : '/'
+    const redirect = location.search ? location.search.split('=')[1] : '/dashboard'
 
     useEffect(() => {
 
