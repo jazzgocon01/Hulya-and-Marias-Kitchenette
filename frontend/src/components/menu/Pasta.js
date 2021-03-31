@@ -12,7 +12,7 @@ import { getProducts } from '../../actions/productActions'
 const Pasta = ({ match }) => {
 
     const [currentPage] = useState(1)
-    const [price] = useState([1, 1000])
+    const [price] = useState([1, 5000])
     const [category] = useState('Pastas&Noodles')
     const [rating] = useState(0)
 
